@@ -56,7 +56,7 @@
     .submit-button { background-color: blue; color: white; }
     .submit-button:hover { background-color: red; }
     .review-button { background-color: green; color: white; }
-    .home-button:hover { background-color: red; }
+    .home-button:hover { background-color: darkred; }
     .review-button:hover { background-color: red; }
     #result-message {
       margin-top: 20px;
@@ -85,23 +85,34 @@
   </style>
 </head>
 <body>
-<h2>ITOZE GUSUBIZA IBIBAZO UTSINDIRE PROVISOIRE MU GIHE GITO!</h2>
-<p>IKIZAMI KIMARA IMINOTA 20, BURI KIBAZO GIFITE INOTA 1</p>
+  <h2>ITOZE GUSUBIZA IBIBAZO UTSINDIRE PROVISOIRE MU GIHE GITO!</h2>
   <button class="custom-button" onclick="promptPassword()">TANGIRA IKIZAMI CYA 1</button>
+<div id="password-modal" style="display: none; position: fixed; top: 30%; left: 50%; transform: translateX(-50%);
+background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 0 15px rgba(0,0,0,0.2); text-align: center; z-index: 1000;">
 
+  <span onclick="closeModal()" style="position: absolute; top: 10px; right: 15px; cursor: pointer; font-size: 20px;">&times;</span>
+
+  <h3>SHYIRAMO KODE IKWEMERERA GUKORA IKI KIZAMI</h3>
+  <input type="password" id="password-input" placeholder="ANDIKA IYO KODE HANO" style="padding: 10px; width: 40%; margin-top: 10px;">
+  <br><br>
+  <button onclick="checkPassword()" style="padding: 8px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">EMEZA NYUMA YO KWANDIKAMO KODE</button>
+  <br><br>
+  <button onclick="exitToSection()" style="padding: 6px 20px; background-color: darkred; color: white; border: none; border-radius: 5px; cursor: pointer;">KANDA HANO USABE KODE</button>
+  <button onclick="closeModal()" style="padding: 6px 20px; background-color: darkred; color: white; border: none; border-radius: 5px; cursor: pointer;">SOHOKA NIBA UDASHAKA GUKOMEZA</button>
+</div>
   <div id="quiz-container">
+<p>IKIZAMI KIGIZWE N'IBIBAZO 20, BURI KIBAZO GIFITE INOTA 1, KIKAMARA IMINOTA 20. AMAHIRWE MASA!!!</p>
     <div id="timer" style="font-weight:bold; margin-bottom: 20px;">IGIHE GISIGAYE: 20:00</div>
     <div id="question-container"></div>
     <button class="submit-button" onclick="submitQuiz()">OHEREZA UBONE AMANOTA YAWE</button>
-    <button class="home-button" onclick="goToHome()">SUBIRA KU BINDI BIZAMI</button>
+    <button class="home-button" onclick="goToHome()">SOHOKA UJYE NO KU BINDI BIZAMI</button>
     <div id="loadingSpinner"></div>
     <div id="result-message" style="display: flex; align-items: center; gap: 10px;"></div>
     <div class="bottom-buttons">
-      <button class="review-button" onclick="reviewAnswers()" style="display:none;">REBA IBISUBIZO</button>
+      <button class="review-button" onclick="reviewAnswers()" style="display:none;">REBA IBISUBIZO BYOSE</button>
     </div>
     </div>
   </div>
-
   <script>
     let password = "91407";
     let quizStarted = false;
@@ -313,18 +324,27 @@ const questions = [
 ];
 
     function promptPassword() {
-      if (quizStarted) return alert("IKIZAMI CYAMAZE GUTANGIRA!");
-      const input = prompt("NYANDIKIRA KURI WHATSAPP 0785677190 CG UMPAMAGARE NGUHE CODE IKWEMERERA GUKORA IKIZAMI!:");
-      if (input === password) {
-        document.getElementById("quiz-container").style.display = "block";
-        quizStarted = true;
-        renderQuestions();
-        startTimer();
-      } else {
-        alert("CODE WANDITSEMO SI YO!");
-      }
-    }
+    if (quizStarted) {
+    alert("IKIZAMI CYAMAZE GUTANGIRA! KANDA OK UKOMEZE CG UJYE KURI SOHOKA UJYE GUTANGIRA BUSHYA");  
+    return;
+  }
+  document.getElementById("password-modal").style.display = "block";
+}
 
+function checkPassword() {
+const input = document.getElementById("password-input").value;
+  if (input === password) {
+    document.getElementById("password-modal").style.display = "none";
+    document.getElementById("quiz-container").style.display = "block";
+    quizStarted = true;
+    renderQuestions();
+    startTimer();
+  } else {
+    alert("SHYIRAMO KODE YA NYAYO CG UTWANDIKIRE KURI 0785677190 TUGUFASHE!");
+  }
+}
+      
+    
     function renderQuestions() {
       const container = document.getElementById("question-container");
       container.innerHTML = "";
@@ -359,7 +379,7 @@ const questions = [
     }
 
     function submitQuiz() {
-      if (submitted) return alert("IKIZAMI CYAMAZE KOHEREZWA, SOHOKA WONGERA UTANGIRE!");
+      if (submitted) return alert("IKIZAMI CYAMAZE KOHEREZWA, KANDA KURI OK USOHOKE UJYE GUTANGIRA IKIZAMI BUSHYA!");
       submitted = true;
       let score = 0;
       for (let i = 0; i < questions.length; i++) {
@@ -389,13 +409,18 @@ const questions = [
     output += `</p>`;
   });
   document.getElementById("question-container").innerHTML = output;
-
-  // Scroll to the top of the page after rendering answers
   window.scrollTo({ top: 0, behavior: "smooth" });
+}
+function exitToSection() {
+  document.getElementById("password-modal").style.display = "none";
+  window.location.href = "https://mwarimudamas.wixsite.com/mwarimudamas#contact-us";
+}
+function closeModal() {
+  document.getElementById("password-modal").style.display = "none";
 }
 
  function goToHome() {
-   window.location.href = "https://mwarimudamas.wixsite.com/mwarimudamas25-1#quizzes";
+   window.location.href = "https://mwarimudamas.wixsite.com/mwarimudamas#quizzes";
     }
   </script>
 </body>
