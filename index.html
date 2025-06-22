@@ -393,6 +393,7 @@ const input = document.getElementById("password-input").value;
           score >= 12
             ? `<span style='color:green'>WABONYE AMANOTA ${score}/20<br>WATSINZE, KOMEREZA AHO!</span>`
             : `<span style='color:red'>WABONYE AMANOTA ${score}/20<br>WATSINZWE, UKENEYE KWIHUGURA BIHAGIJE!</span>`;
+     resultMessage.scrollIntoView({ behavior: "smooth" });
       }, 5000);
     }
 
