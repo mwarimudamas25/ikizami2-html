@@ -224,9 +224,9 @@ input[type="radio"]:checked {
  <div id="password-modal">
     <div class="modal-content">
  <span class="close-btn" onclick="closePasswordModal()">&times;</span>
-      <h3>SHYIRAMO KODE IKWEMERERA GUKORA IKI KIZAMI</h3>
+      <h3>SHYIRAMO 1234 MU KAZU KARI HASI</h3>
      <div style="position: relative; display: inline-block; width: 90%;">
-  <input type="password" id="password-input" placeholder="ANDIKA IYO KODE HANO" oninput="showToggleText()" style="width: 90%; padding-right: 30px;">
+  <input type="password" id="password-input" placeholder="ANDIKAMO 1234 UBUNDI WEMEZE" oninput="showToggleText()" style="width: 90%; padding-right: 30px;">
   <span id="show-text" onclick="togglePassword(true)" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); color: black; cursor: pointer; display: none; font-size: 14px;">👁️Garagaza Password</span>
   <span id="hide-text" onclick="togglePassword(false)" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); color: black; cursor: pointer; display: none; font-size: 14px;">😎Hisha Password</span>
 </div>
@@ -321,7 +321,7 @@ function closePasswordModal() {
 }
 function checkPassword() {
   const inputField = document.getElementById("password-input");
-  if (inputField.value === "91407") {
+  if (inputField.value === "1234") {
     closeModal();
     startQuiz();
   } else {
